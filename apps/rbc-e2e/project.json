@@ -1,0 +1,28 @@
+{
+  "root": "apps/rbc-e2e",
+  "sourceRoot": "apps/rbc-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/rbc-e2e/cypress.json",
+        "devServerTarget": "rbc:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "rbc:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/rbc-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["rbc"]
+}
