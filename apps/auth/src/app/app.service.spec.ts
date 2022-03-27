@@ -13,9 +13,9 @@ describe('AppService', () => {
     service = app.get<AppService>(AppService);
   });
 
-  describe('getData', () => {
+  describe('getHello', () => {
     it('should return "Welcome to auth!"', () => {
-      expect(service.getData()).toEqual({ message: 'Welcome to auth!' });
+      expect(service.getHello()).toEqual('Welcome to auth!');
     });
   });
 });

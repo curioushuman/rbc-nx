@@ -9,13 +9,18 @@ import { AppService } from './app.service';
 
 @Module({
   imports: [
-    // ConfigModule.forRoot({
-    //   ignoreEnvFile: true,
-    //   load: [configFactory],
-    //   isGlobal: true,
-    // }),
+    ConfigModule.forRoot({
+      ignoreEnvFile: true,
+      load: [configFactory],
+      isGlobal: true,
+    }),
+    MongoDbModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggableHttpMiddleware);
+  }
+}

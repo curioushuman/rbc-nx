@@ -13,10 +13,10 @@ describe('AppController', () => {
     }).compile();
   });
 
-  describe('getData', () => {
+  describe('getHello', () => {
     it('should return "Welcome to auth!"', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getData()).toEqual({ message: 'Welcome to auth!' });
+      expect(appController.getHello()).toEqual('Welcome to auth!');
     });
   });
 });
