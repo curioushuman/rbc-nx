@@ -1,7 +1,9 @@
-import { LoggableLogger } from '..';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { LoggableLogger } from '../logger';
 
 // TODO
 // [ ] support non-abstract classes
+// [ ] replace 'any' with something else
 
 // The interface matching the changes applied by the class decorator
 export interface LoggableClass {

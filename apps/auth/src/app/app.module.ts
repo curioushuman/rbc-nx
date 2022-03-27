@@ -7,6 +7,7 @@ import { MongoDbModule } from '@curioushuman/mongo-db';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MembersModule } from '../members/members.module';
+import { ProfilesModule } from '../profiles/profiles.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { MembersModule } from '../members/members.module';
     }),
     MongoDbModule,
     MembersModule,
+    ProfilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
