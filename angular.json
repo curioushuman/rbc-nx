@@ -3,6 +3,7 @@
   "projects": {
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
-    "auth": "apps/auth"
+    "auth": "apps/auth",
+    "loggable": "libs/loggable"
   }
 }
