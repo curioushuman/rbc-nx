@@ -1,0 +1,47 @@
+### List all members
+GET http://rbc.dev/api/auth/members
+
+
+### Create a new member - SUCCESS
+POST http://rbc.dev/api/auth/members
+Content-Type: application/json
+
+{
+    "id": "dtf3",
+    "email": "jake@bluesbrothers.com"
+}
+
+### Create 2nd member - SUCCESS
+POST http://rbc.dev/api/auth/members
+Content-Type: application/json
+
+{
+    "id": "9",
+    "email": "nana@bluesbrothers.com"
+}
+
+### Create a new member - FAIL
+POST http://rbc.dev/api/auth/members
+Content-Type: application/json
+
+{
+    "id": ""
+}
+
+### Update member - SUCCESS (after creating above)
+PUT http://rbc.dev/api/auth/members
+Content-Type: application/json
+
+{
+    "id": "dtf3",
+    "email": "joliet@bluesbrothers.com"
+}
+
+
+### Update member - FAIL
+PUT http://rbc.dev/api/auth/members
+Content-Type: application/json
+
+{
+    "email": "joliet@bluesbrothers.com"
+}
