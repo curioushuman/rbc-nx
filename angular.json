@@ -2,8 +2,6 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
-    "api-interfaces": "libs/api-interfaces",
-    "rbc": "apps/rbc",
-    "rbc-e2e": "apps/rbc-e2e"
+    "api-interfaces": "libs/api-interfaces"
   }
 }
