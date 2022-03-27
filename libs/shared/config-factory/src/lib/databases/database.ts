@@ -38,7 +38,7 @@ function mongoUri(): string {
     console.log('MongoDbUri:mongoDbPort', mongoDbPort);
     console.log(
       'NatsUri',
-      `mongodb://${releaseName}-mongodb.${releaseNamespace}.svc.cluster.local:${mongoDbPort}/${dbName}`,
+      `mongodb://${releaseName}-mongodb.${releaseNamespace}.svc.cluster.local:${mongoDbPort}/${dbName}`
     );
   }
   return `mongodb://${releaseName}-mongodb.${releaseNamespace}.svc.cluster.local:${mongoDbPort}/${dbName}`;

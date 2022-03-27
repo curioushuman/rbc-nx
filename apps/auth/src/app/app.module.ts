@@ -1,7 +1,7 @@
 import { Module, MiddlewareConsumer } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { LoggableHttpMiddleware } from '@curioushuman/loggable';
-// import { configFactory } from '@curioushuman/common-config';
+import { configFactory } from '@curioushuman/config-factory';
 import { MongoDbModule } from '@curioushuman/mongo-db';
 
 import { AppController } from './app.controller';

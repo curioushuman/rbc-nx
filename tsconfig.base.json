@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@curioushuman/common-config": ["libs/common-config/src/index.ts"],
+      "@curioushuman/config-factory": [
+        "libs/shared/config-factory/src/index.ts"
+      ],
       "@curioushuman/loggable": ["libs/loggable/src/index.ts"],
       "@curioushuman/mongo-db": ["libs/shared/db/mongo-db/src/index.ts"],
       "@rbc/api-interfaces": ["libs/api-interfaces/src/index.ts"]

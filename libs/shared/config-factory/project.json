@@ -1,0 +1,33 @@
+{
+  "root": "libs/shared/config-factory",
+  "sourceRoot": "libs/shared/config-factory/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/config-factory",
+        "tsConfig": "libs/shared/config-factory/tsconfig.lib.json",
+        "packageJson": "libs/shared/config-factory/package.json",
+        "main": "libs/shared/config-factory/src/index.ts",
+        "assets": ["libs/shared/config-factory/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/config-factory/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/config-factory"],
+      "options": {
+        "jestConfig": "libs/shared/config-factory/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

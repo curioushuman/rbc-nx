@@ -37,7 +37,7 @@ export class NatsClientConfig {
       console.log('NatsConfig:natsPort', natsPort);
       console.log(
         'NatsUri',
-        `nats://${releaseName}-nats.${releaseNamespace}.svc.cluster.local:${natsPort}`,
+        `nats://${releaseName}-nats.${releaseNamespace}.svc.cluster.local:${natsPort}`
       );
     }
     return `nats://${releaseName}-nats.${releaseNamespace}.svc.cluster.local:${natsPort}`;
