@@ -1,0 +1,50 @@
+### Create a new profile - SUCCESS
+POST http://rbc.dev/api/auth/profiles
+Content-Type: application/json
+
+{
+    "memberId": "dtf3",
+    "firstName": "Jake",
+    "lastName": "Blues"
+}
+
+### Create a new profile - FAIL
+POST http://rbc.dev/api/auth/profiles
+Content-Type: application/json
+
+{
+    "memberId": "incorrectId",
+    "firstName": "Jake",
+    "lastName": "Blues"
+}
+
+### Create a new profile - FAIL
+POST http://rbc.dev/api/auth/profiles
+Content-Type: application/json
+
+{
+    "firstName": "Elwood",
+    "lastName": "Blues"
+}
+
+### Update profile - SUCCESS (after creating above)
+PATCH http://rbc.dev/api/auth/profiles
+Content-Type: application/json
+
+{
+    "memberId": "dtf3",
+    "firstName": "Joliet"
+}
+
+
+### Update profile - FAIL
+PATCH http://rbc.dev/api/auth/profiles
+Content-Type: application/json
+
+{
+    "firstName": "Joliet"
+}
+
+
+### List one profile
+GET http://rbc.dev/api/auth/profiles/dtf3
