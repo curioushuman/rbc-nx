@@ -4,6 +4,7 @@
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
     "auth": "apps/auth",
+    "common-config": "libs/common-config",
     "loggable": "libs/loggable"
   }
 }
