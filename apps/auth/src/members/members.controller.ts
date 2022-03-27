@@ -8,7 +8,7 @@ import {
   BadRequestException,
   NotFoundException,
 } from '@nestjs/common';
-import { SerializeInterceptor } from '@curioushuman/rbc-common';
+import { SerializeInterceptor } from '@curioushuman/nestjs-utils';
 
 import { MembersService } from './members.service';
 import { CreateMemberDto, UpdateMemberDto, MemberExternalDto } from './dto';
@@ -73,7 +73,7 @@ export class MembersController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateMemberDto: UpdateMemberDto,
+    @Body() updateMemberDto: UpdateMemberDto
   ) {
     const member = await this.getOne(id);
     // map DTO to DB structure so service can deal with it

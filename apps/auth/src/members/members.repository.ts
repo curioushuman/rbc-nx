@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { MongoDbRepository } from '@curioushuman/rbc-common';
+import { MongoDbRepository } from '@curioushuman/mongo-db';
 
 import { Member, MemberModel, MemberDocument } from './schema';
 

@@ -4,7 +4,7 @@ import { FilterQuery } from 'mongoose';
 import { Member } from '../schema';
 import { MembersRepository } from '../members.repository';
 import { memberExisting } from './stubs/member.stub';
-import { MemberMockModel } from './support/member.model';
+import { MemberMockModel } from './support/member-model.mock';
 
 describe('MembersRepository', () => {
   let repository: MembersRepository;
@@ -100,7 +100,7 @@ describe('MembersRepository', () => {
           saveSpy = jest.spyOn(MemberMockModel.prototype, 'save');
           constructorSpy = jest.spyOn(
             MemberMockModel.prototype,
-            'constructorSpy',
+            'constructorSpy'
           );
           member = await repository.save(memberExisting());
         });
