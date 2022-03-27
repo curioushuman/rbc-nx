@@ -1,0 +1,33 @@
+{
+  "root": "libs/shared/db/mongo-db",
+  "sourceRoot": "libs/shared/db/mongo-db/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/db/mongo-db",
+        "tsConfig": "libs/shared/db/mongo-db/tsconfig.lib.json",
+        "packageJson": "libs/shared/db/mongo-db/package.json",
+        "main": "libs/shared/db/mongo-db/src/index.ts",
+        "assets": ["libs/shared/db/mongo-db/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/db/mongo-db/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/db/mongo-db"],
+      "options": {
+        "jestConfig": "libs/shared/db/mongo-db/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -5,6 +5,7 @@
     "api-interfaces": "libs/api-interfaces",
     "auth": "apps/auth",
     "common-config": "libs/common-config",
-    "loggable": "libs/loggable"
+    "loggable": "libs/loggable",
+    "shared-db-mongo-db": "libs/shared/db/mongo-db"
   }
 }
