@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'loggable',
-  preset: '../../jest.preset.js',
+  displayName: 'shared-utilities-loggable',
+  preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/libs/loggable',
+  coverageDirectory: '../../../../coverage/libs/shared/utilities/loggable',
 };

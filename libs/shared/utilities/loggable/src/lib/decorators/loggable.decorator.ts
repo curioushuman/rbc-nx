@@ -29,7 +29,7 @@ export function Loggable<T extends Constructor>(context?: string) {
 
 function LoggableFactory<TBase extends Constructor>(
   Base: TBase,
-  context?: string,
+  context?: string
 ) {
   abstract class LoggableBase extends Base implements LoggableClass {
     public logger: LoggableLogger;
@@ -73,7 +73,7 @@ export function LoggableError() {
   return function (
     target: any,
     key: string | symbol,
-    descriptor: PropertyDescriptor,
+    descriptor: PropertyDescriptor
   ) {
     const originalMethod = descriptor.value;
 
@@ -108,7 +108,7 @@ export function LoggableInfo() {
   return function (
     target: any,
     key: string | symbol,
-    descriptor: PropertyDescriptor,
+    descriptor: PropertyDescriptor
   ) {
     const originalMethod = descriptor.value;
     descriptor.value = function (...args: any[]) {
