@@ -12,7 +12,7 @@ export class MemberEmail {
    * I'll include this once it proves useful
    */
   @Prop({
-    enum: Object.values(EmailTypeEnum),
+    enum: Object.values(EmailTypeEnum) as string[],
     type: String,
   })
   type?: EmailTypeEnum;
