@@ -1,0 +1,9 @@
+dependencies:
+- name: rbc-auth
+  repository: file://../subcharts/rbc-auth
+  version: 0.1.13
+- name: nats
+  repository: https://nats-io.github.io/k8s/helm/charts/
+  version: 0.14.2
+digest: sha256:be4d779a6da575e642609e4495d1d87be8147e992f12572f51b6c1aa0365b881
+generated: "2022-03-28T12:41:34.32518+11:00"
