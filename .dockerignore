@@ -1,0 +1,20 @@
+# We will be running several Dockerfiles from root
+# We don't need the following to be passed to the Docker Daemon
+.vscode
+k8s
+node_modules
+tmp
+tools
+.editorconfig
+.eslintrc.json
+.gitignore
+.prettierrcignore
+.prettierrc
+angular.json
+decorate-angular-cli.js
+jest.config.js
+jest.preset.js
+nx.json
+package-lock.json
+package.json
+README.md

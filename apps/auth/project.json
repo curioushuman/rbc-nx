@@ -3,6 +3,16 @@
   "sourceRoot": "apps/auth/src",
   "projectType": "application",
   "targets": {
+    "skaffold-build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          "docker build -f ./apps/auth/Dockerfile . --target development -t curioushuman/rbc-auth"
+        ],
+        "parallel": false
+      }
+    },
     "build": {
       "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
@@ -10,7 +20,8 @@
         "outputPath": "dist/apps/auth",
         "main": "apps/auth/src/main.ts",
         "tsConfig": "apps/auth/tsconfig.app.json",
-        "assets": ["apps/auth/src/assets"]
+        "assets": ["apps/auth/src/assets"],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {

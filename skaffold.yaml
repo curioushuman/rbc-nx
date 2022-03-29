@@ -1,0 +1,64 @@
+apiVersion: skaffold/v2beta27
+kind: Config
+deploy:
+  kubeContext: "docker-desktop"
+  helm:
+    # flags:
+    #   install:
+    #     [--debug]
+    releases:
+    - name: rbc
+      version: ~0.1.15
+      chartPath: k8s/rbc
+      namespace: rbc
+      createNamespace: true
+      setValues:
+        tags.rbc: false
+    - name: rbc-auth
+      version: ~0.1.13
+      chartPath: k8s/subcharts/rbc-auth
+      namespace: rbc
+      artifactOverrides:
+        image: curioushuman/rbc-auth
+      imageStrategy:
+        helm: {}
+      setValues:
+        global.umbrellaRelease: "rbc"
+    # - name: rbc-subscriptions
+    #   version: ~0.1.10
+    #   chartPath: subcharts/rbc-subscriptions
+    #   namespace: rbc
+    #   artifactOverrides:
+    #     image: curioushuman/rbc-subscriptions
+    #   imageStrategy:
+    #     helm: {}
+    #   setValues:
+    #     global.umbrellaRelease: "rbc"
+build:
+  local:
+    push: false
+  artifacts:
+    - image: curioushuman/rbc-auth
+      context: .
+      docker:
+        dockerfile: apps/auth/Dockerfile
+        target: development
+      sync:
+        manual:
+          - src: 'dist/apps/auth/**/*'
+            dest: '/usr/src/app/'
+          - src: 'dist/libs/shared/**/*'
+            dest: '/usr/src/libs/shared/'
+    # - image: curioushuman/rbc-subscriptions
+    #   context: subscriptions
+    #   docker:
+    #     dockerfile: Dockerfile
+    #     target: development
+    #   sync:
+    #     manual:
+    #       - src: 'src/**/*.ts'
+    #         dest: .
+    #       - src: 'src/**/*.http'
+    #         dest: .
+    #       - src: 'src/**/*.md'
+    #         dest: .
