@@ -1,7 +1,7 @@
 apiVersion: skaffold/v2beta27
 kind: Config
 deploy:
-  kubeContext: "docker-desktop"
+  kubeContext: "minikube"
   helm:
     # flags:
     #   install:
@@ -45,10 +45,10 @@ build:
         target: development
       sync:
         manual:
-          - src: 'dist/apps/auth/**/*'
-            dest: '/usr/src/app/'
-          - src: 'dist/libs/shared/**/*'
-            dest: '/usr/src/libs/shared/'
+          - src: 'apps/auth/src/**/*.ts'
+            dest: '/usr/src/app/apps/auth/src'
+          - src: 'libs/shared/**/*.ts'
+            dest: '/usr/src/app/libs/shared'
     # - image: curioushuman/rbc-subscriptions
     #   context: subscriptions
     #   docker:

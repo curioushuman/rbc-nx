@@ -31,13 +31,13 @@ function mongoUri(): string {
   const dbName = process.env.RBC_DATABASE_NAME || appName;
   const releaseName = process.env.RBC_RELEASE_NAME;
   const releaseNamespace = process.env.RBC_RELEASE_NAMESPACE;
-  const dbSvcName = process.env.RBC_DATABASE_SVC_NAME;
   const mongoDbPort = process.env.RBC_DATABASE_PORT || 27107;
   if (process.env.RBC_DEBUG) {
-    console.log('MongoDbUri:dbSvcName', dbSvcName);
+    console.log('MongoDbUri:releaseName', releaseName);
+    console.log('MongoDbUri:releaseNamespace', releaseNamespace);
     console.log('MongoDbUri:mongoDbPort', mongoDbPort);
     console.log(
-      'NatsUri',
+      'MongoDbUri',
       `mongodb://${releaseName}-mongodb.${releaseNamespace}.svc.cluster.local:${mongoDbPort}/${dbName}`
     );
   }
@@ -46,10 +46,11 @@ function mongoUri(): string {
 
 // function mongoIpUri() {
 //   const appName = process.env.RBC_APP_NAME;
-//   const dbSvcName = process.env.RBC_DATABASE_SVC_NAME.replace(
+//   const releaseName = process.env.RBC_RELEASE_NAME.replace(
 //     /-/gi,
-//     '_',
+//     '_'
 //   ).toUpperCase();
+//   const dbSvcName = `${releaseName}_MONGODB`;
 //   const dbName = process.env.RBC_DATABASE_NAME || appName;
 //   const dbPort = process.env.RBC_DATABASE_PORT || 27107;
 //   const hostEnv = `${dbSvcName}_SERVICE_HOST`;
@@ -59,7 +60,7 @@ function mongoUri(): string {
 //     console.log('MongoIpUri:dbSvcName', dbSvcName);
 //     console.log(
 //       'MongoIpUri:mongoUri()',
-//       `mongodb://${dbHost}:${dbPort}/${dbName}`,
+//       `mongodb://${dbHost}:${dbPort}/${dbName}`
 //     );
 //   }
 //   return `mongodb://${dbHost}:${dbPort}/${dbName}`;
@@ -67,6 +68,7 @@ function mongoUri(): string {
 
 export function mongoDbConfig(): CommonConfigKeyValue<MongoDb> {
   const uri = mongoUri();
+  // const uri = mongoIpUri();
   return {
     uri,
     uriTest: `${uri}-test`,

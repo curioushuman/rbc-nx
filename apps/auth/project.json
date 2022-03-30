@@ -6,6 +6,12 @@
     "skaffold-build": {
       "executor": "@nrwl/workspace:run-commands",
       "outputs": [],
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "dependencies"
+        }
+      ],
       "options": {
         "commands": [
           "docker build -f ./apps/auth/Dockerfile . --target development -t curioushuman/rbc-auth"

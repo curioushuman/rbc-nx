@@ -46,10 +46,6 @@ spec:
             - name: RBC_UMBRELLA_RELEASE_NAME
               value: "{{ .Values.global.umbrellaRelease }}"
             {{- end }}
-            {{- if .Values.database.serviceAlias }}
-            - name: RBC_DATABASE_SVC_NAME
-              value: "{{ .Values.database.serviceAlias }}"
-            {{- end }}
             {{- if .Values.database.name }}
             - name: RBC_DATABASE_NAME
               value: "{{ .Values.database.name }}"

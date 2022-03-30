@@ -2,6 +2,9 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+global:
+  umbrellaRelease: ""
+
 local:
   debug: true
 
@@ -13,17 +16,17 @@ database:
   type: "mongodb"
   port: "27017"
   name: "rbc-auth"
-  # Must be same as alias defined in chart
-  # TODO - make this dynamic (within templates)
-  serviceAlias: "rbc-auth-mongodb"
 
 # Overriding DB values for mongodb
+# TODO - pull sc-db dynamically from umbrella
+# * NOTE: storageClass must be set to "" to use default
 mongodb:
+  global:
+    storageClass: ""
   auth:
     enabled: false
   # service:
   #   port: 27017
-  #   nameOverride: "rbc-auth-mongodb"
 
 
 image:

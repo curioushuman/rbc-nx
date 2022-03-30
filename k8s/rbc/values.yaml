@@ -17,6 +17,20 @@ nats:
     trace: true
     connectErrorReports: true
 
+# TODO - get this working using a relevant provisioner
+storageClass:
+  # Specifies whether a storage class should be created
+  create: false
+  # name: "sc-db"
+  # annotations: {}
+  # apiVersion: ""
+  # defaultClass: false
+  # provisioner: ""
+  # allowVolumeExpansion: true
+  # volumeBindingMode: "WaitForFirstConsumer"
+  # reclaimPolicy: "Retain"
+  # parameters: {}
+
 replicaCount: 1
 
 nameOverride: ""
