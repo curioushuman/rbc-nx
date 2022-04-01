@@ -1,12 +1,12 @@
 # ! This Dockerfile will only run successfully as part of a Kubernetes cluster
 # See k8s for helm charts, and skaffold.dev for dev setup
 
-# TODO
-# [ ] update prod stage to work based on changes made to dev
-# [ ] if you build in dev, then add another stage called builder or similar
-
-## Dev stage
+# * Dev stage
 FROM node:16-alpine AS development
+
+# We're including this here, so Skaffold knows it's a node.js build
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
@@ -24,7 +24,7 @@ RUN npm install && \
   npm install tsconfig-paths ts-loader @types/node source-map-support \
   webpack-node-externals run-script-webpack-plugin webpack
 
-COPY ./dist/apps ./dist/apps
+COPY ./dist/apps/subscriptions ./dist/apps/subscriptions
 COPY ./dist/libs ./dist/libs
 
 COPY [ \
@@ -37,27 +37,30 @@ COPY [ \
 COPY ./libs ./libs
 COPY ./apps/subscriptions ./apps/subscriptions
 
-RUN tsc --showConfig --project ./apps/subscriptions/tsconfig.build.json
-
-# RUN nest build
+# This is here in case you want to check what config is being used
+# RUN tsc --showConfig --project ./apps/subscriptions/tsconfig.build.json
 
 RUN chmod +x start.sh
 CMD [ "sh", "start.sh" ]
 
-FROM curioushuman/rbc-base:latest AS production
+# * Production stage
+FROM node:16-alpine AS production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
-COPY ./dist/apps/subscriptions/package*.json ./
+COPY --from=development /usr/src/app/package.json ./
 
 # There is no need for --production flag, as NODE_ENV is set
 RUN npm install
 
-# * Leave trailing slash on source so everything is copied
-COPY --from=development /usr/src/app/dist ./
-COPY ./apps/subscriptions/start.sh ./start.sh
+# Copy the pre-built files from local
+COPY ./dist/apps/subscriptions ./dist/apps/subscriptions
+COPY ./dist/libs ./dist/libs
+
+# ! This needs to be tested, as to whether or not permissions are correct
+COPY --from=development /usr/src/app/start.sh ./
 
 CMD [ "sh", "start.sh" ]
