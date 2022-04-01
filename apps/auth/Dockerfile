@@ -1,30 +1,43 @@
+# ! This Dockerfile will only run successfully as part of a Kubernetes cluster
+# See k8s for helm charts, and skaffold.dev for dev setup
+
 # TODO
 # [ ] update prod stage to work based on changes made to dev
 # [ ] if you build in dev, then add another stage called builder or similar
 
+## Dev stage
 FROM node:16-alpine AS development
 
 WORKDIR /usr/src/app
 
-COPY ./dist/apps/auth/package*.json ./
-
-# This is required as the current package.json is built incorrectly by nx
+# Copy package.json and package-lock.json to /usr/src/app
+# ! Currently Nx doesn't give us a lock file :(
+COPY ./dist/apps/auth/package.json ./
+# ! We need to manually set the main value in the package.json
+# as it is currently set incorrectly within package.json
 RUN sed -i 's/main\.js/apps\/auth\/main\.js/g' package.json
 
 # Nx also doesn't currently include devDependencies in package.json
 # When they do, this whole section (dev-nx) can be removed
 RUN npm install && \
   npm install typescript @nestjs/cli @nestjs/schematics ts-node -g && \
-  npm install tsconfig-paths ts-loader @types/node source-map-support
+  npm install tsconfig-paths ts-loader @types/node source-map-support \
+  webpack-node-externals run-script-webpack-plugin webpack
 
 COPY ./dist/apps ./dist/apps
 COPY ./dist/libs ./dist/libs
 
-COPY ["./tsconfig.base.json", "./apps/auth/nest-cli.json", "./apps/auth/start.sh", "./"]
+COPY [ \
+  "./tsconfig.base.json", \
+  "./webpack-hmr.config.js", \
+  "./apps/auth/nest-cli.json", \
+  "./apps/auth/start.sh", \
+  "./" \
+  ]
 COPY ./libs ./libs
 COPY ./apps/auth ./apps/auth
 
-# RUN tsc --showConfig --project ./apps/auth/tsconfig.build.json
+RUN tsc --showConfig --project ./apps/auth/tsconfig.build.json
 
 # RUN nest build
 

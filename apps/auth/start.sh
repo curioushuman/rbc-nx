@@ -14,5 +14,6 @@ if [ $NODE_ENV == "production" ]; then
   node /usr/src/app/dist/auth/main.js
 else
   echo "Running in development..."
-  nest start --watch
+  # nest start --watch
+  nest build --webpack --webpackPath webpack-hmr.config.js --path apps/auth/tsconfig.build.json --watch
 fi

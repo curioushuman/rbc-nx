@@ -14,12 +14,17 @@ interface NestAppClass {
   new (...args: any[]): unknown;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const module: any;
+
 // TODO
+// * replace this with a cleaner method
 // - better handling of ConfigService
 // - move some of the bootstrap logic to common module
 
 export class App {
   public static async start(module: NestAppClass) {
+    console.log('Testing watch from App');
     const app = await NestFactory.create(module);
     await App.setup(app);
   }
@@ -45,6 +50,11 @@ export class App {
     const namespace = configService.get<string>('app.namespace');
     await app.listen(port);
     console.log(`${release}, listening on port ${port} within ${namespace}`);
+
+    if (module.hot) {
+      module.hot.accept();
+      module.hot.dispose(() => app.close());
+    }
   }
 
   public static async setupMicroservices(

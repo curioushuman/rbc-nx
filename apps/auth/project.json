@@ -9,7 +9,7 @@
       "dependsOn": [
         {
           "target": "build",
-          "projects": "dependencies"
+          "projects": "self"
         }
       ],
       "options": {
