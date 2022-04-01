@@ -1,0 +1,20 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "monorepo": true,
+  "root": "apps/subscriptions",
+  "compilerOptions": {
+    "tsConfigPath": "apps/subscriptions/tsconfig.build.json"
+  },
+  "projects": {
+    "subscriptions": {
+      "type": "application",
+      "root": "apps/subscriptions",
+      "entryFile": "main",
+      "sourceRoot": "apps/subscriptions/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/subscriptions/tsconfig.build.json"
+      }
+    }
+  }
+}

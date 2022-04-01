@@ -1,0 +1,2 @@
+### List all members
+GET http://rbc.dev/api/subscriptions/members

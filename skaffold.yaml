@@ -16,7 +16,7 @@ deploy:
       setValues:
         tags.rbc: false
     - name: rbc-auth
-      version: ~0.1.13
+      version: ~0.2.1
       chartPath: k8s/subcharts/rbc-auth
       namespace: rbc
       artifactOverrides:
@@ -25,16 +25,16 @@ deploy:
         helm: {}
       setValues:
         global.umbrellaRelease: "rbc"
-    # - name: rbc-subscriptions
-    #   version: ~0.1.10
-    #   chartPath: subcharts/rbc-subscriptions
-    #   namespace: rbc
-    #   artifactOverrides:
-    #     image: curioushuman/rbc-subscriptions
-    #   imageStrategy:
-    #     helm: {}
-    #   setValues:
-    #     global.umbrellaRelease: "rbc"
+    - name: rbc-subscriptions
+      version: ~0.2.1
+      chartPath: k8s/subcharts/rbc-subscriptions
+      namespace: rbc
+      artifactOverrides:
+        image: curioushuman/rbc-subscriptions
+      imageStrategy:
+        helm: {}
+      setValues:
+        global.umbrellaRelease: "rbc"
 build:
   local:
     push: false
@@ -50,16 +50,14 @@ build:
             dest: '/usr/src/app/'
           - src: 'libs/shared/**/*.ts'
             dest: '/usr/src/app/'
-    # - image: curioushuman/rbc-subscriptions
-    #   context: subscriptions
-    #   docker:
-    #     dockerfile: Dockerfile
-    #     target: development
-    #   sync:
-    #     manual:
-    #       - src: 'src/**/*.ts'
-    #         dest: .
-    #       - src: 'src/**/*.http'
-    #         dest: .
-    #       - src: 'src/**/*.md'
-    #         dest: .
+    - image: curioushuman/rbc-subscriptions
+      context: .
+      docker:
+        dockerfile: apps/subscriptions/Dockerfile
+        target: development
+      sync:
+        manual:
+          - src: 'apps/subscriptions/src/**/*.ts'
+            dest: '/usr/src/app/'
+          - src: 'libs/shared/**/*.ts'
+            dest: '/usr/src/app/'

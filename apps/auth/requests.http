@@ -1,0 +1,2 @@
+### Test for readiness
+GET http://rbc.dev/api/auth/hello

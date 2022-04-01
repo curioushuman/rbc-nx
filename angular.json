@@ -6,6 +6,7 @@
     "shared-config-factory": "libs/shared/config-factory",
     "shared-db-mongo-db": "libs/shared/db/mongo-db",
     "shared-utilities-loggable": "libs/shared/utilities/loggable",
-    "shared-utilities-nestjs-utils": "libs/shared/utilities/nestjs-utils"
+    "shared-utilities-nestjs-utils": "libs/shared/utilities/nestjs-utils",
+    "subscriptions": "apps/subscriptions"
   }
 }

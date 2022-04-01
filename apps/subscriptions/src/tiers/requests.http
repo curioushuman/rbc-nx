@@ -1,0 +1,20 @@
+### List all tiers
+GET http://rbc.dev/api/subscriptions/tiers
+
+
+### Create a new tier - SUCCESS
+POST http://rbc.dev/api/subscriptions/tiers
+Content-Type: application/json
+
+{
+    "label": "admin"
+}
+
+
+### Create a new tier - FAIL
+POST http://rbc.dev/api/subscriptions/tiers
+Content-Type: application/json
+
+{
+
+}
