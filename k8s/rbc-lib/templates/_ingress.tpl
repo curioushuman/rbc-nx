@@ -1,5 +1,4 @@
 {{- define "rbc-lib.ingress.tpl" -}}
-{{- if and .Values.ingress.enabled (not .Values.global.umbrellaRelease) -}}
 {{- $fullName := include "rbc-lib.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
@@ -59,7 +58,6 @@ spec:
               {{- end }}
           {{- end }}
     {{- end }}
-{{- end }}
 {{- end -}}
 {{- define "rbc-lib.ingress" -}}
 {{- include "rbc-lib.util.merge" (append . "rbc-lib.ingress.tpl") -}}

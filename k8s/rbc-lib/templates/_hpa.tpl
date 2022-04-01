@@ -1,6 +1,4 @@
-# ! NOT YET UTILISED
 {{- define "rbc-lib.hpa.tpl" -}}
-{{- if .Values.autoscaling.enabled }}
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
@@ -27,7 +25,6 @@ spec:
         name: memory
         targetAverageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
     {{- end }}
-{{- end }}
 {{- end -}}
 {{- define "rbc-lib.hpa" -}}
 {{- include "rbc-lib.util.merge" (append . "rbc-lib.hpa.tpl") -}}
