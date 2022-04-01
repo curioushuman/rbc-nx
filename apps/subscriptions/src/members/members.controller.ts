@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, BadRequestException } from '@nestjs/common';
 import { EventPattern } from '@nestjs/microservices';
 import { plainToInstance } from 'class-transformer';
 
@@ -13,6 +13,20 @@ export class MembersController {
   constructor(private readonly membersService: MembersService) {}
 
   /**
+   * Get all members
+   * TODO
+   * [ ] Move this into a separate controller that deals with HTTP only
+   */
+  @Get()
+  async get() {
+    try {
+      return await this.membersService.find();
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
+  }
+
+  /**
    * Create a member
    * TODO
    * [ ] need to throw an error in here, and log it using loggable
@@ -25,7 +39,7 @@ export class MembersController {
       data,
       {
         excludeExtraneousValues: true,
-      },
+      }
     );
     try {
       await this.membersService.create(memberMapped);
@@ -48,7 +62,7 @@ export class MembersController {
       data,
       {
         excludeExtraneousValues: true,
-      },
+      }
     );
     try {
       const member = await this.membersService.findOne(memberMapped.id);

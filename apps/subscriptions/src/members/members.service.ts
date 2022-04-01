@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { merge } from 'lodash';
 
@@ -6,8 +6,14 @@ import { Member } from './schema';
 import { MembersRepository } from './members.repository';
 import { CreateMemberMap, UpdateMemberMap } from './mappers';
 
+/**
+ * TODO
+ * [ ] Add more complete logging using logger
+ */
 @Injectable()
 export class MembersService {
+  private readonly logger = new Logger(MembersService.name);
+
   constructor(private readonly membersRepository: MembersRepository) {}
 
   async find(): Promise<Member[]> {
@@ -23,6 +29,8 @@ export class MembersService {
     let member = plainToInstance(Member, memberMapped);
     // save the member
     member = await this.save(member);
+    // log the member
+    this.logger.log(`Created member: ${member.id}`);
     // return the member
     return member;
   }
@@ -32,6 +40,8 @@ export class MembersService {
     member = this.merge(member, memberMapped);
     // save the member
     member = await this.save(member);
+    // log the member
+    this.logger.log(`Updated member: ${member.id}`);
     // return the member
     return member;
   }
