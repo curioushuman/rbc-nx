@@ -1,0 +1,3 @@
+{{- include "rbc-lib.ingress" (list . "rbc-subscriptions.ingress") -}}
+{{- define "rbc-subscriptions.ingress" -}}
+{{- end -}}
